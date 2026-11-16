@@ -201,22 +201,30 @@ void mergeSort(vector<int>& arr, int low, int high, int depth) {
 }
 
 int main() {
-    int size;
+	int size = 0;
+	
+	do {
+	    cout << "Enter number of elements (1-10): ";
+	    if (!(cin >> size)) {
+	        cin.clear();
+	        cin.ignore(10000, '\n');
+	        size = 0;
+	    }
+	    if (size < 1 || size > 10) {
+	        cout << "Invalid. Please enter 1 to 10.\n";
+	    }
+	} while (size < 1 || size > 10);
 
-    do {
-        cout << "Enter number of elements (1-10): ";
-        cin >> size;
-        if (size < 1 || size > 10) {
-            cout << "Invalid. Please enter 1 to 10.\n";
-        }
-    } while (size < 1 || size > 10);
+	vector<int> original(size);
 
-    vector<int> original(size);
-
-    for (int i = 0; i < size; i++) {
-    	cout << "Enter element " << (i + 1) << ": ";
-        cin >> original[i];
-    }
+	for (int i = 0; i < size; i++) {
+	    cout << "Enter element " << (i + 1) << ": ";
+	    while (!(cin >> original[i])) {
+	        cin.clear();
+	        cin.ignore(10000, '\n');
+	        cout << "Invalid input. Enter an integer for element " << (i + 1) << ": ";
+	    }
+	}
 
     cout << "\nOriginal array: ";
     printVector(original);
